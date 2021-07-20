@@ -3,56 +3,42 @@ package ru.geekbrins.store.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrins.store.entities.Product;
-import ru.geekbrins.store.repositories.ProductRepository;
+import ru.geekbrins.store.services.ProductService;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
-@RequestMapping
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
-
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+    public List<Product> findAllProducts(
+            @RequestParam(name = "min_price", defaultValue = "0") Integer minPrice,
+            @RequestParam(name = "max_price", required = false) Integer maxPrice
+    ) {
+        if (maxPrice == null) {
+            maxPrice = Integer.MAX_VALUE;
+        }
+        return productService.findAllByPrice(minPrice, maxPrice);
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productRepository.findById(id).get();
+    public Product findProductById(@PathVariable Long id) {
+        return productService.findProductById(id).get();
     }
 
     @PostMapping
-    public Product addNewProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    public Product saveNewProduct(@RequestBody Product product) {
+        product.setId(null);
+        return productService.saveOrUpdate(product);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteProductById(@PathVariable Long id) {
-        productRepository.deleteById(id);
-    }
-    @GetMapping("/product_title")
-    public Optional<Product> findProductByName (@RequestParam String title) {
-        return productRepository.findProductByName(title);
-    }
-
-    @GetMapping("/cost")
-    public Optional<Product> getProductGreaterAndLessThan(@RequestParam Double min, @RequestParam Double max){
-        return productRepository.findAllByCostGreaterThanAndCostLessThan(min, max);
-    }
-
-    @GetMapping("/cost_greater_than")
-    public Optional<Product> getProductGreaterThan(@RequestParam Double min) {
-        return productRepository.findAllByCostGreaterThanEqual(min);
-    }
-
-    @GetMapping("/cost_less_than")
-    public Optional<Product> getProductLessThan(@RequestParam Double max) {
-        return productRepository.findAllByCostLessThanEqual(max);
+    @DeleteMapping("/{id}")
+    public void updateProduct(@PathVariable Long id) {
+        productService.deleteProductById(id);
     }
 }
-
 
