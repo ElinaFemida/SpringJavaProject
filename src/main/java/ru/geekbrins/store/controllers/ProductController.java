@@ -2,7 +2,7 @@ package ru.geekbrins.store.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrins.store.entities.Product;
+import ru.geekbrins.store.model.entities.Product;
 import ru.geekbrins.store.services.ProductService;
 
 import java.util.List;

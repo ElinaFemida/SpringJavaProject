@@ -3,7 +3,7 @@ package ru.geekbrins.store.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.geekbrins.store.entities.Product;
+import ru.geekbrins.store.model.entities.Product;
 
 import java.util.List;
 

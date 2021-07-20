@@ -2,7 +2,7 @@ package ru.geekbrins.store.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.geekbrins.store.entities.Product;
+import ru.geekbrins.store.model.entities.Product;
 import ru.geekbrins.store.repositories.ProductRepository;
 import java.util.List;
 import java.util.Optional;
