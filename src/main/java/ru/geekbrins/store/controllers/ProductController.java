@@ -1,44 +1,54 @@
 package ru.geekbrins.store.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import ru.geekbrins.store.exeptions.ResourceNotFoundException;
+import ru.geekbrins.store.model.dtos.ProductDto;
 import ru.geekbrins.store.model.entities.Product;
+import ru.geekbrins.store.repositories.specifications.ProductSpecifications;
 import ru.geekbrins.store.services.ProductService;
-
-import java.util.List;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> findAllProducts(
-            @RequestParam(name = "min_price", defaultValue = "0") Integer minPrice,
-            @RequestParam(name = "max_price", required = false) Integer maxPrice
+    public Page<ProductDto> findAllProducts(
+            @RequestParam MultiValueMap<String, String> params,
+            @RequestParam(name = "p", defaultValue = "1") Integer page
     ) {
-        if (maxPrice == null) {
-            maxPrice = Integer.MAX_VALUE;
+        if (page < 1) {
+            page = 1;
         }
-        return productService.findAllByPrice(minPrice, maxPrice);
+        return productService.findAll(ProductSpecifications.build(params), page, 10);
     }
 
     @GetMapping("/{id}")
-    public Product findProductById(@PathVariable Long id) {
-        return productService.findProductById(id).get();
+    public ProductDto findProductById(@PathVariable Long id) {
+        return productService.findProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Product saveNewProduct(@RequestBody Product product) {
         product.setId(null);
         return productService.saveOrUpdate(product);
     }
 
+    @PutMapping
+    public Product updateProduct(@RequestBody Product product) {
+        return productService.saveOrUpdate(product);
+    }
+
     @DeleteMapping("/{id}")
     public void updateProduct(@PathVariable Long id) {
-        productService.deleteProductById(id);
+        productService.deleteById(id);
     }
 }
 
