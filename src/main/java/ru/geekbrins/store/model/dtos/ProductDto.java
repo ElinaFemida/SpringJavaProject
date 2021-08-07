@@ -16,3 +16,4 @@ public class ProductDto {
         this.price = p.getPrice();
     }
 }
+

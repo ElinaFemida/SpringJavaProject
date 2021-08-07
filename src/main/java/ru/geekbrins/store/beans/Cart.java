@@ -1,9 +1,11 @@
-package ru.geekbrins.store.model.entities;
+package ru.geekbrins.store.beans;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.geekbrins.store.exeptions.ResourceNotFoundException;
+import ru.geekbrins.store.model.entities.OrderItem;
+import ru.geekbrins.store.model.entities.Product;
 import ru.geekbrins.store.services.ProductService;
 
 import javax.annotation.PostConstruct;
@@ -20,13 +22,13 @@ public class Cart {
     private int totalPrice;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         this.items = new ArrayList<>();
     }
 
-    public void addToCart(Long id){
-        for (OrderItem o : items){
-            if (o.getProduct().getId().equals(id)){
+    public void addToCart(Long id) {
+        for (OrderItem o : items) {
+            if (o.getProduct().getId().equals(id)) {
                 o.incrementQuantity();
                 recalculate();
                 return;
@@ -38,14 +40,14 @@ public class Cart {
         recalculate();
     }
 
-    public void clear(){
+    public void clear() {
         items.clear();
         recalculate();
     }
 
-    public void recalculate(){
+    public void recalculate() {
         totalPrice = 0;
-        for (OrderItem o : items){
+        for (OrderItem o : items) {
             totalPrice += o.getPrice();
         }
     }

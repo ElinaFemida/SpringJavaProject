@@ -3,6 +3,7 @@ package ru.geekbrins.store.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrins.store.exeptions.ResourceNotFoundException;
@@ -10,6 +11,8 @@ import ru.geekbrins.store.model.dtos.ProductDto;
 import ru.geekbrins.store.model.entities.Product;
 import ru.geekbrins.store.repositories.specifications.ProductSpecifications;
 import ru.geekbrins.store.services.ProductService;
+
+import java.security.Principal;
 
 
 @RestController
@@ -26,14 +29,15 @@ public class ProductController {
         if (page < 1) {
             page = 1;
         }
+
         return productService.findAll(ProductSpecifications.build(params), page, 10);
     }
 
-
-
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
-    public ProductDto findProductById(@PathVariable Long id) {
-        return productService.findProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
+    public ProductDto findProductById(Principal principal, @PathVariable Long id) {
+        System.out.println(principal.getName());
+        return productService.findProductDtoById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doens't exist"));
     }
 
     @PostMapping
@@ -53,4 +57,3 @@ public class ProductController {
         productService.deleteById(id);
     }
 }
-
