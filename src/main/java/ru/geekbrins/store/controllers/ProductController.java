@@ -1,5 +1,6 @@
 package ru.geekbrins.store.controllers;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -8,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.geekbrins.store.exeptions.ResourceNotFoundException;
 import ru.geekbrins.store.model.dtos.ProductDto;
 import ru.geekbrins.store.model.entities.Product;
-import ru.geekbrins.store.repositories.specifications.ProductSpecifications;
 import ru.geekbrins.store.services.ProductService;
-
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -26,14 +25,13 @@ public class ProductController {
         if (page < 1) {
             page = 1;
         }
-        return productService.findAll(ProductSpecifications.build(params), page, 10);
+
+        return productService.findAll(ProductSpecifications.build(params), page, 4);
     }
-
-
 
     @GetMapping("/{id}")
     public ProductDto findProductById(@PathVariable Long id) {
-        return productService.findProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exist"));
+        return productService.findProductDtoById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doens't exist"));
     }
 
     @PostMapping
@@ -53,4 +51,3 @@ public class ProductController {
         productService.deleteById(id);
     }
 }
-
