@@ -1,5 +1,5 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
-    const contextPath = 'http://localhost:8189/store/api/v1';
+    const contextPath = 'http://138.68.90.77/api/v1';
 
     $scope.fillTable = function (pageIndex = 1) {
         $http({
@@ -14,17 +14,26 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         }).then(function (response) {
             $scope.ProductsPage = response.data;
 
-            let minPageIndex = pageIndex - 10;
+            let minPageIndex = pageIndex - 2;
             if (minPageIndex < 1) {
                 minPageIndex = 1;
             }
 
-            let maxPageIndex = pageIndex + 10;
+            let maxPageIndex = pageIndex + 2;
             if (maxPageIndex > $scope.ProductsPage.totalPages) {
                 maxPageIndex = $scope.ProductsPage.totalPages;
             }
 
             $scope.PaginationArray = $scope.generatePagesIndexes(minPageIndex, maxPageIndex);
+        });
+    };
+
+    $scope.showCart = function () {
+        $http({
+            url: contextPath + '/cart',
+            method: 'GET'
+        }).then(function (response) {
+            $scope.Cart = response.data;
         });
     };
 
@@ -51,5 +60,20 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     }
 
+    $scope.addToCart = function (productId) {
+        $http.get(contextPath + '/cart/add/' + productId)
+            .then(function (response) {
+                $scope.showCart();
+            });
+    }
+
+    $scope.clearCart = function () {
+        $http.get(contextPath + '/cart/clear')
+            .then(function (response) {
+                $scope.showCart();
+            });
+    }
+
     $scope.fillTable();
+    $scope.showCart();
 });
