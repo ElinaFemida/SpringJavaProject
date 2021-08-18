@@ -1,9 +1,10 @@
 package ru.geekbrains.auth.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.geekbrains.auth.entities.Role;
 
-@Repository
-public interface RoleRepository extends CrudRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+
+    Role findByName(String name);
+
 }

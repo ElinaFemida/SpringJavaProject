@@ -1,4 +1,11 @@
 package ru.geekbrains.auth.repositories;
 
-public class UserRepository {
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import ru.geekbrains.auth.entities.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findByEmail(String email);
+
 }

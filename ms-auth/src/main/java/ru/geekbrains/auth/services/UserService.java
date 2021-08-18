@@ -1,4 +1,4 @@
-package services;
+package ru.geekbrains.auth.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User findByLoginAndPassword(String email, String password) {
+    public User findByEmailAndPassword(String email, String password) {
         User userEntity = findByEmail(email);
         if (userEntity != null) {
             if (passwordEncoder.matches(password, userEntity.getPassword())) {

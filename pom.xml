@@ -28,7 +28,8 @@
         <module>ms-orders</module>
         <module>ms-payments</module>
     </modules>
-    <dependencies> </dependencies>
+    <dependencies>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

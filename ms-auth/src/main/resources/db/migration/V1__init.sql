@@ -1,35 +1,26 @@
-create table users (
-                       id                    bigserial,
-                       username              varchar(30) not null,
-                       password              varchar(80) not null,
-                       email                 varchar(50) unique,
-                       score                 varchar(30) not null,
-                       primary key (id)
+create table role_table
+(
+    id   serial      not null
+        constraint role_table_pk
+            primary key,
+    name varchar(20) not null
 );
 
-create table roles (
-                       id                    serial,
-                       name                  varchar(50) not null,
-                       primary key (id)
+create table user_table
+(
+    id       bigserial not null
+        constraint user_table_pk
+            primary key,
+    email    varchar(50),
+    password varchar(500)
 );
 
-CREATE TABLE users_roles (
-                             user_id               bigint not null,
-                             role_id               int not null,
-                             primary key (user_id, role_id),
-                             foreign key (user_id) references users (id),
-                             foreign key (role_id) references roles (id)
+create table users_roles
+(
+    user_id bigint references user_table(id),
+    role_id int references role_table(id)
 );
 
-insert into roles (name)
-values
-('ROLE_USER'), ('ROLE_ADMIN');
+insert into role_table(name) values ('ROLE_ADMIN');
+insert into role_table(name) values ('ROLE_USER');
 
-insert into users (username, password, email, score)
-values
-('userr', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'user2@gmail.com', '55');
-
-insert into users_roles (user_id, role_id)
-values
-(1, 1),
-(1, 2);
