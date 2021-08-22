@@ -34,7 +34,7 @@ public class AuthController {
         userService.saveUser(user);
     }
 
-    @PostMapping("/email")
+    @PostMapping("/login")
     public AuthResponseDto email(@RequestBody AuthRequestDto request) {
         User user = userService.findByEmailAndPassword(request.getEmail(), request.getPassword());
         List<String> roles = new ArrayList<>();
