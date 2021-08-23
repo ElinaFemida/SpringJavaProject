@@ -38,8 +38,8 @@ public class AuthController {
         userService.saveUser(user);
     }
 
-    @PostMapping("/email")
-    public AuthResponseDto email(@RequestBody AuthRequestDto request) {
+    @PostMapping("/login")
+    public AuthResponseDto login(@RequestBody AuthRequestDto request) {
         User user = userService.findByEmailAndPassword(request.getEmail(), request.getPassword());
         List<String> roles = new ArrayList<>();
         user.getRole().forEach(role -> roles.add(role.getName()));
@@ -50,5 +50,11 @@ public class AuthController {
                 .build();
         String token = iTokenService.generateToken(userInfo);
         return new AuthResponseDto(token);
+    }
+
+    @GetMapping("/logout")
+    public Boolean logout(@RequestHeader("Authorization") String token) {
+        redisRepository.saveToken(token);
+        return true;
     }
 }
