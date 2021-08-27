@@ -27,7 +27,7 @@
         <!--   Microservices   -->
         <module>ms-auth</module>
         <module>ms-products</module>
-        <module>ms-orders</module>
+        <module>ms-order</module>
         <module>ms-payments</module>
     </modules>
     <dependencies>

@@ -1,10 +1,10 @@
-package ru.geekbrains.auth;
+package ru.geekbrains.order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsAuthApplicationTests {
+class MsOrderApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,13 +1,13 @@
-package ru.geekbrains.orders;
+package ru.geekbrains.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsOrdersApplication {
+public class MsOrderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MsOrdersApplication.class, args);
+        SpringApplication.run(MsOrderApplication.class, args);
     }
 
 }
