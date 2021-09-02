@@ -1,6 +1,7 @@
 package ru.geekbrains.auth.controllers;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,14 @@ import ru.geekbrains.auth.entities.User;
 import ru.geekbrains.auth.services.UserService;
 import ru.geekbrains.corelib.interfaces.ITokenService;
 import ru.geekbrains.corelib.models.UserInfo;
+import ru.geekbrains.corelib.repositories.RedisRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     @Autowired
@@ -24,6 +27,7 @@ public class AuthController {
 
     @Autowired
     private ITokenService iTokenService;
+    private final RedisRepository redisRepository;
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
@@ -34,7 +38,7 @@ public class AuthController {
         userService.saveUser(user);
     }
 
-    @PostMapping("/email")
+    @PostMapping("/login")
     public AuthResponseDto email(@RequestBody AuthRequestDto request) {
         User user = userService.findByEmailAndPassword(request.getEmail(), request.getPassword());
         List<String> roles = new ArrayList<>();
@@ -46,5 +50,10 @@ public class AuthController {
                 .build();
         String token = iTokenService.generateToken(userInfo);
         return new AuthResponseDto(token);
+    }
+    @GetMapping("/logout")
+    public Boolean logout(@RequestHeader("Authorization") String token){
+        redisRepository.saveToken(token);
+        return true;
     }
 }
