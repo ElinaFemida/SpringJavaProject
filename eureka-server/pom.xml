@@ -13,16 +13,10 @@
     <version>0.0.1</version>
     <name>eureka-server</name>
 
-    <properties>
-        <java.version>11</java.version>
-        <eurika.server.version>3.0.3</eurika.server.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-            <version>${eurika.server.version}</version>
         </dependency>
     </dependencies>
 

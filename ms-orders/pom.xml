@@ -8,17 +8,21 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>gateway</artifactId>
-    <version>0.0.1</version>
+    <artifactId>ms-orders</artifactId>
+    <version>0.0.1T</version>
+    <name>ms-order</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>ru.geekbrains</groupId>
+            <artifactId>core-lib</artifactId>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>ru.geekbrains</groupId>
+            <artifactId>routing-lib</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
+
 </project>

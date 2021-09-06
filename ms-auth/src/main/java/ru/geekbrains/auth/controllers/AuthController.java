@@ -47,4 +47,10 @@ public class AuthController {
         String token = iTokenService.generateToken(userInfo);
         return new AuthResponseDto(token);
     }
+
+
+
+    public void doIt (int x){
+
+    }
 }
