@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
-@EnableFeignClients(basePackages = "ru.geekbrains")
 @SpringBootApplication(scanBasePackages = "ru.geekbrains")
 public class MsProductsApplication {
 

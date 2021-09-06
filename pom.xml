@@ -24,6 +24,7 @@
         <!--  Cloud  -->
         <module>eureka-server</module>
         <module>gateway-server</module>
+        <module>config-server</module>
 
         <!--  Libs  -->
         <module>core-lib</module>

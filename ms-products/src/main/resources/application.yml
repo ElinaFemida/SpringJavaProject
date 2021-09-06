@@ -1,6 +1,9 @@
 server:
   port: 0
 
+scheduler:
+  delay: 10000
+
 spring:
   application:
     name: ms-product
@@ -27,6 +30,7 @@ eureka:
     service-url:
       default-zone: ${EUREKA_URI:http://locaihost:8761/eureka}
     fetch-registry: true
+
 jwt:
   secret: qwertyuiop
 
