@@ -32,6 +32,9 @@ public class ProductService {
     public List<ProductDto> findProductDtosByIds(List<Long> ids) {
         return productRepository.findByIdIn(ids).stream().map(this::toDto).collect(Collectors.toList());
     }
+    public Optional<Product> findProductById(Long id) {
+        return productRepository.findById(id);
+    }
 
     public Page<ProductDto> findAll(Specification<Product> spec, int page, int pageSize) {
         return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(this::toDto);
