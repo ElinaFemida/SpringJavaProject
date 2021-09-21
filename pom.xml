@@ -18,6 +18,8 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <modules>
@@ -35,6 +37,10 @@
         <module>ms-products</module>
         <module>ms-orders</module>
         <module>ms-payments</module>
+
+        <!--  RabbitMQ  -->
+        <module>rabbitmq-blog</module>
+
     </modules>
 
     <dependencies>
