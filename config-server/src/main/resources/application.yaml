@@ -8,12 +8,13 @@ spring:
     config:
       server:
         git:
-          uri: adf
-          username:
-          password:
+        uri: https://github.com/ElinaFemida/SpringJavaProject
+          default-label: configs
+          username: admin
+          password: admin
           clone-on-start: true
 
-eureka:
-  client:
-    service-url:
-      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
