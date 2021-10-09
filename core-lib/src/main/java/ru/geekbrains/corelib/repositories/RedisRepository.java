@@ -10,11 +10,11 @@ public class RedisRepository {
     final String TOKENS_SET = "tokens";
     Jedis jedis = new Jedis();
 
-    public void saveToken(String token){
+    public void saveToken(String token) {
         jedis.sadd(TOKENS_SET, token);
     }
 
     public boolean checkToken(String token) {
-        return jedis.sismember (TOKENS_SET, token);
+        return jedis.sismember(TOKENS_SET, token);
     }
 }

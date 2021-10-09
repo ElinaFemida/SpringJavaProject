@@ -29,8 +29,7 @@ public class Consumer {
             if (selectTop.startsWith("subscribe")) {
                 selectTop = selectTop.replace("subscribe ", "");
                 break;
-            }
-            else System.out.println("Choose topic theme: [subscribe] + [theme]");
+            } else System.out.println("Choose topic theme: [subscribe] + [theme]");
         }
 
         String routingKey = "com.gb.blog." + selectTop + ".#";

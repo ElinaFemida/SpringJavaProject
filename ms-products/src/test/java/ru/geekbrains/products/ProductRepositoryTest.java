@@ -22,6 +22,6 @@ public class ProductRepositoryTest {
     @Test
     public void initDbTest() {
         List<Product> list = productRepository.findAll();
-        assertEquals(3,list.size());
+        assertEquals(3, list.size());
     }
 }
