@@ -1,6 +1,5 @@
 package ru.geekbrains.products.repository.specifications;
 
-
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.MultiValueMap;
 import ru.geekbrains.products.entities.Product;

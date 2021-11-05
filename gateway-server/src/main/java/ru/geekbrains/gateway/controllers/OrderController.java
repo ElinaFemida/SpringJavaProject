@@ -1,4 +1,4 @@
-package ru.geekbrains.order.controllers;
+package ru.geekbrains.gateway.controllers;
 
 public class OrderController {
 }

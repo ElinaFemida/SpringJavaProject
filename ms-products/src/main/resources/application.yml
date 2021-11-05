@@ -1,12 +1,8 @@
-server:
-  port: 0
-
-scheduler:
-  delay: 10000
-
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
   application:
-    name: ms-product
+    name: ms-products
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
@@ -17,13 +13,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
-
   h2:
     console:
-      properties:
-        enabled: true
-        settings:
-          web-allow-others: false
+      enabled: true
+      settings:
+        web-allow-others: false
 
 eureka:
   client:
@@ -33,4 +27,3 @@ eureka:
 
 jwt:
   secret: qwertyuiop
-

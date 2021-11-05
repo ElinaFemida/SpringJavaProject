@@ -1,9 +1,7 @@
 package ru.geekbrains.products.services;
 
-
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -32,7 +30,6 @@ public class ProductService {
     public List<ProductDto> findProductDtosByIds(List<Long> ids) {
         return productRepository.findByIdIn(ids).stream().map(this::toDto).collect(Collectors.toList());
     }
-
     public Optional<Product> findProductById(Long id) {
         return productRepository.findById(id);
     }

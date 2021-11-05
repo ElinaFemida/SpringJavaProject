@@ -15,7 +15,6 @@ import ru.geekbrains.routing.dtos.SignUpRequestDto;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -51,7 +50,7 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public Boolean logout(@RequestHeader("Authorization") String token) {
+    public Boolean logout(@RequestHeader("Authorization") String token){
         redisRepository.saveToken(token);
         return true;
     }

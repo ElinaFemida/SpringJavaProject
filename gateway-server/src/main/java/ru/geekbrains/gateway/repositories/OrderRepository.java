@@ -1,4 +1,4 @@
-package ru.geekbrains.order.repositories;
+package ru.geekbrains.gateway.repositories;
 
 public class OrderRepository {
 }

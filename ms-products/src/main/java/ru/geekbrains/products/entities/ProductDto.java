@@ -1,6 +1,5 @@
 package ru.geekbrains.products.entities;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

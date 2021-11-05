@@ -1,10 +1,8 @@
 package ru.geekbrains.orders.models;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;

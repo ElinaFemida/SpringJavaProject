@@ -8,10 +8,10 @@ spring:
     config:
       server:
         git:
-        uri: https://github.com/ElinaFemida/SpringJavaProject
-          default-label: configs
-          username: admin
-          password: admin
+          uri: https://github.com/ElinaFemida/market_config/
+          default-label: main
+          username: elina
+          password: GeekBrains123
           clone-on-start: true
 
 #eureka:

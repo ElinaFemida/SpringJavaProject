@@ -1,4 +1,4 @@
-package ru.geekbrains.order.services;
+package ru.geekbrains.gateway.services;
 
 public class CartService {
 }

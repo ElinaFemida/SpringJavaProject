@@ -1,6 +1,8 @@
 package ru.geekbrains.auth.entities;
 
 
+
+
 import lombok.Data;
 
 import javax.persistence.*;

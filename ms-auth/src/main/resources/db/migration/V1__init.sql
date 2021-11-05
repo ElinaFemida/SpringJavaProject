@@ -17,12 +17,9 @@ create table user_table
 
 create table users_roles
 (
-    user_id bigint references user_table (id),
-    role_id int references role_table (id)
+    user_id bigint references user_table(id),
+    role_id int references role_table(id)
 );
 
-insert into role_table(name)
-values ('ROLE_ADMIN');
-insert into role_table(name)
-values ('ROLE_USER');
-
+insert into role_table(name) values ('ROLE_ADMIN');
+insert into role_table(name) values ('ROLE_USER');

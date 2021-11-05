@@ -1,25 +1,20 @@
 package ru.geekbrains.orders.services;
 
-
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.orders.models.Cart;
 import ru.geekbrains.orders.models.Order;
+import ru.geekbrains.orders.models.Cart;
 import ru.geekbrains.orders.repositories.OrderRepository;
 import ru.geekbrains.routing.clients.ProductClient;
 import ru.geekbrains.routing.dtos.CartDto;
 import ru.geekbrains.routing.dtos.OrderDto;
 import ru.geekbrains.routing.dtos.ProductDto;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
 
 @Service
 @RequiredArgsConstructor
