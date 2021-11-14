@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
 @Service
 @RequiredArgsConstructor
 public class CartService {

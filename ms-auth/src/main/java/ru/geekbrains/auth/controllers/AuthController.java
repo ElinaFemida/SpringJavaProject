@@ -37,7 +37,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthResponseDto login(@RequestBody AuthRequestDto request) {
-        User user = userService.findByLoginAndPassword(request.getLogin(), request.getPassword());
+        User user = userService.findByLoginAndPassword(request.getEmail(), request.getPassword());
         List<String> roles = new ArrayList<>();
         user.getRole().forEach(role -> roles.add(role.getName()));
         UserInfo userInfo = UserInfo.builder()
