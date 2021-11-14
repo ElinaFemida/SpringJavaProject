@@ -1,20 +1,22 @@
 package ru.geekbrains.corelib.repositories;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
-import redis.clients.jedis.Jedis;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
-@Repository
+import java.time.Duration;
+
+@Component
 @RequiredArgsConstructor
 public class RedisRepository {
-    final String TOKENS_SET = "tokens";
-    Jedis jedis = new Jedis();
+
+    private final RedisTemplate<String, Object> redisTemplate;
 
     public void saveToken(String token) {
-        jedis.sadd(TOKENS_SET, token);
+        redisTemplate.opsForValue().set("token: " + token, 1, Duration.ofHours(1));
     }
 
     public boolean checkToken(String token) {
-        return jedis.sismember(TOKENS_SET, token);
+        return redisTemplate.opsForValue().get("token: " + token) != null;
     }
 }

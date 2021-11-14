@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: ms-payments
-  cloud:
-    config:
-      uri: http://localhost:8888
-

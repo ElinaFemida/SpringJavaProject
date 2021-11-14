@@ -2,7 +2,6 @@ package ru.geekbrains.auth.services;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.auth.entities.Role;
@@ -41,5 +40,18 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public User changePassword(Integer userId, String oldPassword, String newPassword) {
+        User user = userRepository.findById(userId).get();
+        if (user.getPassword().equals(passwordEncoder.encode(oldPassword)))
+            user.setPassword(passwordEncoder.encode(newPassword));
+        return userRepository.save(user);
+    }
+
+    public User restorePassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        return userRepository.save(user);
     }
 }

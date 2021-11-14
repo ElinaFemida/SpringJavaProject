@@ -5,7 +5,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8081
+#spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:8081
